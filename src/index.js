@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const {PORT} = require('./config/server.config');
 const apiRouter = require('./routes');
+const BaseError = require('./errors/baseError');
+const ErrorHandler = require('./utils/errorHandler');
 
 const app = express();
 
@@ -14,9 +16,9 @@ app.get('/ping', (req, res) => {
 })
 
 app.use('/api', apiRouter);
+
+app.use(ErrorHandler);  //Let's have it after all the requests.
+
 app.listen(PORT, () => {
-console.log('Server Started at port: ${PORT}');
+console.log(`Server Started at port: ${PORT}`);
 });
-//installing nodemon, make sure you add under scripts in package.json
-//"dev": "npx nodemon src/index.js",
-//npm run dev, is only required to run at port 3000
