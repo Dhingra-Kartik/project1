@@ -4,10 +4,12 @@ class BaseError extends Error{
         this.name = name;
         this.statusCode = statusCode;
         this.details = details;
-        Error.captureStackTrace(this);
 
-        console.log("This is stack from error");
-        console.log(this.stack);
+        //Object.setPrototypeOf(this, new.target.prototype);
+        // Error.captureStackTrace(this);
+
+        // console.log("This is stack from error");
+        // console.log(this.stack);
     }
 }
 module.exports = BaseError;
