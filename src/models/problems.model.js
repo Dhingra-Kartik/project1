@@ -8,6 +8,7 @@ const problemSchema = new mongoose.Schema({
 
     description: {
         type: String,
+        required: true,
         default: "It is NOT described !"
     },
 

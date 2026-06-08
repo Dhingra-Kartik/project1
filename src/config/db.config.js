@@ -11,4 +11,4 @@ async function connectToDb(){
         console.log(error);
     }
 }
-module.exports = connectToDb
+module.exports = connectToDb;

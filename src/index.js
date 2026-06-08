@@ -5,6 +5,7 @@ const apiRouter = require('./routes');
 const BaseError = require('./errors/baseError');
 const ErrorHandler = require('./utils/errorHandler');
 const connectToDb = require('./config/db.config');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -24,4 +25,10 @@ app.listen(PORT, async () => {
 console.log(`Server Started at port: ${PORT}`);
 await connectToDb();
 console.log("Successfully Connected to DB");
+// const mongoose = require('mongoose');
+//     const catSchema = new mongoose.Schema({ name: String, age: Number });
+//     const Cat = mongoose.model('Cat', catSchema);
+
+//     const kitty = await Cat.create({ name: "Whiskers", age: 23 });
+//     console.log("🐱 Cat created:", kitty);
 });
