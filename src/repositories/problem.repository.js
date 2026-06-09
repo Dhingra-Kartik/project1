@@ -1,6 +1,6 @@
 const NotFound = require('../errors/notFound.error');
 const { Problem } = require('../models/');
-//const logger = require('../config/logger.config');
+const logger = require('../config/logger.config');
 //const { createSearchIndex } = require('../models/problems.model');
 
 class ProblemRepository{
@@ -32,7 +32,7 @@ class ProblemRepository{
         try {
             const problem = await Problem.findById(id);
             if(!problem){
-                //logger.error(`Problem with id: ${id} not found !`);
+                logger.error(`Problem.Repository: Problem with id: ${id} not found !`);
                 throw new NotFound("Problem", id);
             }
             return problem;
