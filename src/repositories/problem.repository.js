@@ -50,9 +50,25 @@ class ProblemRepository{
                 throw new NotFound("Problem", id);
             }
             return problem;
+
         }catch(error){
             logger.error("Something Went Wrong");
             throw error;
         }}
+
+        async updateProblem(id, Pdata){
+            try {
+                const problem = await Problem.findByIdAndUpdate(id, Pdata, {new: true});
+                if(!problem){
+                    logger.error(`Problem.repository: Problem with id: ${id} not found !`);
+                    throw new NotFound("Problem", id);
+                } 
+                return problem;
+            } catch (error) {
+                logger.error("Something Went Wrong");
+                throw error;
+                
+            }
+        }
     }
 module.exports = ProblemRepository;

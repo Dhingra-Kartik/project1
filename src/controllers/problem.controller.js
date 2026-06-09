@@ -63,7 +63,18 @@ async function deleteProblem(req, res, next){  //make sure you have next here.
         }
         }
         
-function updateProblem(req, res){
+async function updateProblem(req, res, next){
+    try {
+        const updatedProblem = await problemService.updateProblem(req.params.id, req.body);
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: 'Successfully updated your problem',
+            error: {},
+            data: updatedProblem
+        })
+    } catch (error) {
+        next(error);
+    }
             
         }
         

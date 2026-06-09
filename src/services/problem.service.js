@@ -1,4 +1,5 @@
 const sanitizeMarkdownContent = require("../utils/markdown.sanitizer")
+const logger = require('../config/logger.config')
 class ProblemService{
     constructor(problemRepository){
         this.problemRepository = problemRepository;
@@ -27,6 +28,16 @@ class ProblemService{
         const problem = await this.problemRepository.deleteProblem(problemId);
         return problem;
     }
+
+    async updateProblem(id, Pdata){
+        if(Pdata.description){
+        Pdata.description = sanitizeMarkdownContent(Pdata.description);
+        };
+        console.log(id, Pdata);
+        const problem = await this.problemRepository.updateProblem(id, Pdata);
+        return problem;
+    }
+
 
 }
 module.exports = ProblemService;
