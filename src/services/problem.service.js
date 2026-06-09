@@ -20,7 +20,7 @@ class ProblemService{
         return problems;
     }
     async getProblem(problemId){
-        const problem = await this.problemRepository.getproblem(problemId);
+        const problem = await this.problemRepository.getProblem(problemId);
         return problem;
     }
 }
