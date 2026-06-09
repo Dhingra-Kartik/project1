@@ -49,8 +49,18 @@ async function getProblems(req, res, next){
         }
     }
         
-function deleteProblem(req, res){  //make sure you have next here.
-            
+async function deleteProblem(req, res, next){  //make sure you have next here.
+        try {
+            const response = await problemService.deleteProblem(req.params.id);
+            return res.status(StatusCodes.OK).json({
+            success: true,
+            message: 'Successfully delted the problem',
+            error: {},
+            data: response
+        })
+        } catch (error){
+            next(error);
+        }
         }
         
 function updateProblem(req, res){
