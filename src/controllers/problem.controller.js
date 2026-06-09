@@ -22,7 +22,7 @@ async function addProblem(req, res, next){     //we earliar only had req, res, b
 
 async function getProblem(req, res, next){
     try {
-        const problem = await problemService.getproblem(req.params.id);
+        const problem = await problemService.getProblem(req.params.id);
         return res.status(StatusCodes.OK).json({
             success: true,
             message: 'Successfully fetched a problem',
