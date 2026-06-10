@@ -1,9 +1,25 @@
 const winston = require('winston');
 require('winston-mongodb');
-
-
+const {Writable} = require('stream');
+const  {logToCosmosDB } = require('../clientApis/cosmos.Client')
 
 const allowedTransports = [];
+
+const customStream = new Writable({
+    write(chunk, encoding, callback){
+        const message = chunk.toString();
+        console.log("Log intercepted in custom transport:", message);
+        logToCosmosDB("error", message);
+        callback();
+    }
+})
+
+const customStreamTransport = new winston.transports.Stream({
+    stream: customStream
+}); 
+
+allowedTransports.push(customStreamTransport)
+
 allowedTransports.push(new winston.transports.Console({
     format: winston.format.combine(
         winston.format.colorize(),
